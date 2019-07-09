@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>404 Not Found</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		span{
+			font-size: 18px;
+			color: gray;
+			margin-right: 180px;
+			font-weight: lighter;
+		}
+		button:hover{
+			background-color: #00B5E5;
+			cursor: pointer;
+		}
+	</style>
+</head>
+<body style="background-color: #f4f5f7; text-align: center;">
+	<!--头部导航条-->
+	<div style="margin: 3px 3px 3px 3px; background-color: white; display: inline-block;
+	width: 1500px; height: 40px; text-align: center; box-shadow: rgba(0, 0, 0, 0.1) 0 1px 3px; line-height: 40px; font-size: 14px">
+		<div style="display: inline-block;">
+			<a  href="http://127.0.0.1:5000/" ><button style="background-color:#00A1D6; height:47px; width: 120px;border: none;
+			 border-radius: 0 0 4px 4px; color: white; font-size: 16px; font-weight: bolder";>
+				返回主站
+            </button></a>
+		</div>
+	</div>
+	<!--主页面-->
+	<div style="width: 900px; height: 550px; background-color: white; display: inline-block;
+	margin-top: 45px; border-radius: 12px;">
+		<img src="{{url_for('static',filename='tail_picture.png')}}" style="position:relative; top:33px; left: -250px;">
+		<div style="font-size: 40px; font-weight: bolder; position: relative;
+		top: -187px; left: 150px;">
+			=w=&nbsp;&nbsp;&nbsp;您要找的页面不见啦！<br><br>
+			<div style="float: left; padding-left: 210px;text-align: left;">
+				<span>错误号：&nbsp;&nbsp;404</span><br>
+				<span id="the_url">
+					<script type="text/javascript">
+						var url = window.location.href;
+						document.getElementById("the_url").innerHTML="请求地址："+url;
+					</script>
+				</span>
+			</div>
+		</div>
+		<div style="margin-top: 120px; font-size: 12px; text-align: center; color: gray">
+			来自---<br>
+			华中科技大学软件专业<br>
+			专业实训组 3
+		</div>
+	</div>
+
+</body>
+</html>

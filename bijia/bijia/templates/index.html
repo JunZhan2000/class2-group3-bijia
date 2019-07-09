@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>比价宝</title>
+    <style>
+        *{
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        input{
+            outline: none;
+        }
+        .inline-search{
+            height:50px;
+            width:700px;
+            padding-top: 20px;
+        }
+        #baby{
+            float:left;
+            border-radius:25px;
+            width:87%;
+            height:46px;
+            font-size: 18px;
+            border: none;
+            text-indent:15px;
+            background-color:rgb(235, 235, 235);
+            transition:all 0.2s;/*反应时间*/
+
+        }
+        #baby:hover{
+            background-color: white;
+            box-shadow: black 1px 2px 15px;
+        }
+        #submit{
+            float:right;
+            width:12%;
+            height:50px;
+            font-size:18px;
+            font-weight:bolder;
+            border:none;
+            display: inline-block;
+            background-color:red;
+            color:white;
+            border-radius:25px;
+            cursor:pointer;
+            transition:all 0.2s;
+        }
+        #submit:hover{
+            background-color:rgb(200,20,20);
+        }
+        .square{
+            width:60px;
+            height:60px;
+            display: inline-block;
+            border-radius: 60px;
+            background-color: white;
+            margin: 16px 30px 16px 30px;
+            overflow:hidden;
+            box-shadow: 0px 0px 2px black;
+            opacity: 0.75;
+        }
+        .square:hover {
+            cursor: pointer;
+            box-shadow: 0px 0px 10px white;
+            opacity: 1;
+        }
+        input[type=checkbox]{
+            display: none;
+        }
+        input[type=checkbox] +label span{
+            display: inline-block;
+            height: 30px;
+            width:85px;
+            margin-right: 3px;
+            margin-left: 3px;
+            background-color: white;
+            font-weight: bolder;
+            border-radius: 20px;
+            transition:background 0.15s linear 0s,border 0.05s linear 0s ;
+            border: white solid 3px;
+            line-height: 30px;
+        }
+        input[type=checkbox] +label span:hover{
+            cursor: pointer;
+        }
+        #all:checked +label span {
+            display: inline-block;
+            background-color: orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+        }
+        #taobao:checked +label span {
+            display: inline-block;
+            background-color: orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+        }
+        #jingdong:checked +label span {
+            display: inline-block;
+            background-color:orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+        }
+        #suning:checked +label span {
+            display: inline-block;
+            background-color:orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+        }
+        #dangdang:checked +label span {
+            display: inline-block;
+            background-color:orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+
+        }
+        #weipinhui:checked +label span {
+            display: inline-block;
+            background-color:orangered;
+            cursor: pointer;
+            border: orangered solid 3px;
+            color:white;
+        }
+    </style>
+</head>
+<body style="/*background-color:rgb(255,225,235);*/ min-width:1512px;background-size:1600px"
+      background="{{ url_for('static',filename='back3.jpg') }}">
+    <div id="background-left" style="height:540px; width: 17%;display: inline-block;/*background-color: deeppink*/">
+        <!--
+        <img id="float1" src="{{ url_for('static',filename='float_img2.jpg') }}" style="width:90px; position:absolute; top: 60px;left: 100px; ">
+        -->
+    </div>
+    <div style="text-align:center; padding-top:118px; width:64%;display: inline-block;/*position: relative*/" id="mainpart">
+        <img src="{{ url_for('static',filename='head8.png') }}" id="header" alt="标题图片" style="display:inline-block;
+         height:140px; width:350px;margin-bottom: 10px">
+
+
+
+        <form method="post">
+            <!--搜索框部分-->
+            <div class="inline-search unchecked" style="display: inline-block;margin-right: -115px">
+
+                {{ form.csrf_toke }}<!--渲染CSRF令牌隐藏字段-->
+                {{ form.hidden_tag() }}
+                {{ form.baby(placeholder="此处输入商品名，下方选定范围以查询...") }}
+                {{ form.submit(value="搜索", class="unchecked") }}
+            </div>
+
+
+            <!--复选框部分-->
+            <div style="margin-top:15px; text-align: center; width:1000px; height:40px; display: inline-block;" >
+                {{ form.all(checked="checked") }}
+                <label for="all">
+                    <span>
+                        全网搜索
+                    </span>
+                </label>
+                {{ form.taobao(value="y") }}
+                <label for="taobao">
+                    <span>
+                        淘宝
+                    </span>
+                </label>
+                {{ form.jingdong(value="y") }}
+                <label for="jingdong">
+                    <span>
+                        京东
+                    </span>
+                </label>
+                {{ form.suning(value="y") }}
+                <label for="suning">
+                    <span>
+                        苏宁易购
+                    </span>
+                </label>
+                {{ form.dangdang(value="y") }}
+                <label for="dangdang">
+                    <span>
+                        当当
+                    </span>
+                </label>
+            </div>
+        </form><br><br>
+        {{ form.errors }}
+        <!--网页链接部分-->
+        <div id="part_2" style="text-align: center; width: 1000px" class="unchecked">
+            <div class="square">
+                <a href="https://www.taobao.com/" target="_blank"><img src="{{ url_for('static',filename='taobao.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://www.jd.com/" target="_blank"><img src="{{ url_for('static',filename='jingdong.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://www.tmall.com/" target="_blank"><img src="{{ url_for('static',filename='tianmao.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://www.suning.com/" target="_blank"><img src="{{ url_for('static',filename='suning.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://www.amazon.cn/" target="_blank"><img src="{{ url_for('static',filename='yamaxun.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div><br>
+            <div class="square">
+                <a href="https://www.yhd.com/" target="_blank"><img src="{{ url_for('static',filename='yihaodian.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://pages.kaola.com/" target="_blank"><img src="{{ url_for('static',filename='kaola.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="https://mgold.gome.com.cn/" target="_blank"><img src="{{ url_for('static',filename='guomei.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="http://you.163.com/" target="_blank"><img src="{{ url_for('static',filename='wangyiyanxuan.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+            <div class="square">
+                <a href="http://www.dangdang.com/" target="_blank"><img src="{{ url_for('static',filename='dangdang.jpg') }}" style="width: auto;height: auto;
+                max-width: 100%;max-height: 100%;"></a>
+            </div>
+        </div>
+    </div>
+    <div id="background-right" style="height:540px; width: 18%; display: inline-block; /*background-color: forestgreen*/">
+    </div>
+</body>
+</html>

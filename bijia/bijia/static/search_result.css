@@ -1,0 +1,360 @@
+/*搜索框样式*/
+*{
+  margin: 0;
+  padding: 0;
+}
+input{
+  outline: none;
+}
+#search_result_head{
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  padding-top: 10px;
+  margin-left: 70px;
+}
+#baby{
+  height:45px;
+  width:700px;
+  font-size: 16px;
+  border-radius: 25px;
+  margin-right: 5px;
+  text-indent: 15px;
+  background-color:rgb(235, 235, 235);
+  transition:all 0.2s;
+  border: none;
+  outline: none;
+}
+#baby:hover{
+  background-color: white;
+  box-shadow: black 0 0 5px;
+}
+#submit{
+  height: 50px;
+  width:100px;
+  background: red;
+  font-size: 18px;
+  font-weight: bolder;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+#submit:hover{
+  background-color: firebrick;
+}
+#search_result_checkbox{
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+}
+input[type=checkbox]{
+  display: none;
+}
+input[type=checkbox] +label span{
+  display: inline-block;
+  height:29px;
+  line-height: 29px;
+  font-size: 14px;
+  margin: 0 5px 0 5px;
+  width:75px;
+  background-color: rgb(235,235,235);
+  font-weight: bolder;
+  border-radius: 20px;
+  transition: all 0.1s;
+  text-align: center;
+  border: white 5px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input[type=checkbox] +label span:hover{
+  cursor: pointer;
+}
+input[type=checkbox]:checked +label span{
+  background-color: orangered;
+  color: white;
+  border: orangered 5px;
+}
+input[type=radio]{
+  display: none;
+}
+input[type=radio] +label span{
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+  width: 70px;
+  border: darkgrey solid 2px;
+  border-radius: 20px;
+  background-color:rgb(235,235,235);
+  margin: 0 13px 0 13px;
+}
+input[type=radio] +label span:hover{
+  cursor: pointer;
+}
+input[type=radio]:checked +label span{
+  background-color: darkgrey;
+  border:white solid 2px;
+}
+input[type=text].section{
+  height: 27px;
+  width: 50px;
+  border-radius: 20px;
+  text-indent: 15px;
+  outline: none;
+}
+#price_submit{
+  margin-left: 30px;
+  border-radius: 20px;
+  height:34px;
+  width:47px;
+  outline: none;
+}
+#price_submit:hover{
+  cursor: pointer;
+}
+.dischecked{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*搜索结果样式*/
+.baby_list{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-color: rgb(245, 245, 245);
+}
+
+.baby_list .baby_img{
+  position: absolute;
+  left: 210px;
+  top: 2px;
+  width: 170px;
+  height: 165px;
+  background-color: brown;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+.baby_list .baby_img:hover{
+    border: 1px ridge black;
+    cursor: pointer;
+}
+.baby_list .baby_desc{
+  position: relative;
+  display: inline;
+  width: 800px;
+  height: 170px;
+  left: 450px;
+}
+.baby_list .baby_name{
+    position: absolute;
+    font-size: 26px;
+    color: blue;
+    width: max-content;
+    left: 5px;
+    top: 12px;
+}
+.baby_list .shop_name{
+  position: absolute;
+  font-size: 10px;
+  width: max-content;
+  left: 40px;
+  top: 70px;
+}
+.baby_list .baby_name a{
+    text-decoration: none;
+}
+.baby_list .baby_name a:hover{
+    text-decoration: underline;
+}
+.ds_name{
+    font-size: 12px;
+    width: 120px;
+    height: 100%;
+}
+.baby_list .baby_price{
+  position: absolute;
+  font-size: 32px;
+  color: red;
+  width: max-content;
+  left: 500px;
+  top: 65px;
+}
+.baby_list .sell_num{
+    position: absolute;
+    font-size: 18p;
+    color: gray;
+    width: max-content;
+    left: 20px;
+    top: 130px;
+}
+/*返回顶部按钮*/
+.arrow{
+    border: 14px solid transparent;
+    border-bottom-color: #3DA0DB;
+    width: 3px;
+    height: 0px;
+    top: -4px;
+    z-index: 3;
+}
+.stick{
+    width: 10px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: #3DA0DB;
+    top: 16px;
+    z-index: 3;
+}
+#gotop div{
+    position: absolute;
+    margin: auto;
+    right: 0px;
+    left: 0px;
+    z-index: 3;
+}
+#gotop{
+    background-color: #dddddd;
+    height: 60px;
+    width: 50px;
+    border-radius: 8px;
+    display: block;
+    cursor: pointer;
+    position: fixed;
+    right: 40px;
+    bottom: 80px;
+    display: none;
+    z-index: 3;
+}
+/*分页按钮样式*/
+
+.page_ctrl{
+  text-align: center;
+  margin: 10px auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  }
+
+  .page_ctrl *{
+    line-height: 26px;
+  }
+
+  .page_ctrl button{
+    margin:0 3px;
+    min-width: 60px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    color: #5e5e5e;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+  }
+  .page_ctrl .page_dot{
+    font-size: 20px;
+    width: 27px;
+  }
+
+  .page_ctrl button:hover{
+    background: #0eb0d2;
+    color: #ffffff;
+  }
+
+  .page_ctrl .btn_dis{
+    cursor: default;
+    opacity: .7;
+    background: #eeeeee;
+    color: #5e5e5e;
+  }
+
+  .page_ctrl .btn_dis:hover{
+    background: #eeeeee;
+    color: #5e5e5e;
+  }
+
+  .page_ctrl .current_page{
+    background: #0eb0d2;
+    color: #ffffff;
+  }
+
+  .page_ctrl .input_page_num{
+    width:30px;
+    height: 26px;
+    margin:0 3px;
+    padding: 0;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    color: #5e5e5e;
+    outline: none;
+  }
+  .page_ctrl .page_total,.page_ctrl .page_text{
+    color: #2b2b2b;
+    font-size: 13px;
+  }
+  /*图片映射样式*/
+  .img_map{
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.person{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: none;
+}
+.person img{
+    width: 100px;
+    height: 100px;
+}
+#person1{
+    left: 23%;
+    top: 5%;
+}
+#person2{
+    left: 34%;
+    top: -21%;
+}
+#person3{
+    left: 45%;
+    top: 0%;
+}
+#person4{
+    left: 56%;
+    top: 0%;
+}
+#person5{
+    left: 71%;
+    top: 5%;
+}
+#box{
+  position: absolute;
+  left: 3%;
+  top: 12%;
+  width: 200px;
+  height: 200px;
+  font-size: 12px;
+  color: #2b2b2b;
+  background-color:lightgrey;
+  display: none;
+}
+#box .person_name{
+  text-align: center;
+  color: #0eb0d2;
+  font-size: 24px;
+  width: 200px;
+}
+#box .person_desc{
+  color: black;
+  font-size: 24px;
+}

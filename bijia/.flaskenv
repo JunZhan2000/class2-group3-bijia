@@ -1,0 +1,3 @@
+FLASK_APP=bijia
+SELECT_KEY=wfeecvjdajfwesifjksgfsadnksf
+FLASK_ENV=development

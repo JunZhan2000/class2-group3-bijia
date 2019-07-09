@@ -1,0 +1,861 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>搜索结果--比价宝</title>
+
+    <style>
+        /*搜索框样式*/
+*{
+  margin: 0;
+  padding: 0;
+}
+input{
+  outline: none;
+}
+#search_result_head{
+  height: 70px;
+  text-align: center;
+  line-height: 70px;
+  padding-top: 10px;
+  margin-left: 70px;
+}
+#baby{
+  height:45px;
+  width:700px;
+  font-size: 16px;
+  border-radius: 25px;
+  margin-right: 5px;
+  text-indent: 15px;
+  background-color:rgb(235, 235, 235);
+  transition:all 0.2s;
+  border: none;
+  outline: none;
+}
+#baby:hover{
+  background-color: white;
+  box-shadow: black 0 0 5px;
+}
+#submit{
+  height: 50px;
+  width:100px;
+  background: red;
+  font-size: 18px;
+  font-weight: bolder;
+  color: white;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.2s;
+  border: none;
+}
+#submit:hover{
+  background-color: firebrick;
+}
+#search_result_checkbox{
+  height: 35px;
+  text-align: center;
+  line-height: 35px;
+}
+input[type=checkbox]{
+  display: none;
+}
+input[type=checkbox] +label span{
+  display: inline-block;
+  height:29px;
+  line-height: 29px;
+  font-size: 14px;
+  margin: 0 5px 0 5px;
+  width:75px;
+  background-color: rgb(235,235,235);
+  font-weight: bolder;
+  border-radius: 20px;
+  transition: all 0.1s;
+  text-align: center;
+  border: white 5px;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+input[type=checkbox] +label span:hover{
+  cursor: pointer;
+}
+input[type=checkbox]:checked +label span{
+  background-color: orangered;
+  color: white;
+  border: orangered 5px;
+}
+input[type=radio]{
+  display: none;
+}
+input[type=radio] +label span{
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+  width: 70px;
+  border: darkgrey solid 2px;
+  border-radius: 20px;
+  background-color:rgb(235,235,235);
+  margin: 0 13px 0 13px;
+}
+input[type=radio] +label span:hover{
+  cursor: pointer;
+}
+input[type=radio]:checked +label span{
+  background-color: darkgrey;
+  border:white solid 2px;
+}
+input[type=text].section{
+  height: 27px;
+  width: 50px;
+  border-radius: 20px;
+  text-indent: 15px;
+  outline: none;
+}
+#price_submit{
+  margin-left: 30px;
+  border-radius: 20px;
+  height:34px;
+  width:47px;
+  outline: none;
+}
+#price_submit:hover{
+  cursor: pointer;
+}
+.dischecked{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/*搜索结果样式*/
+.baby_list{
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background-color: rgb(245, 245, 245);
+}
+
+.baby_list .baby_img{
+  position: absolute;
+  left: 210px;
+  top: 2px;
+  width: 170px;
+  height: 165px;
+  background-color: brown;
+  border-radius: 8px;
+  border: 1px solid white;
+}
+.baby_list .baby_img:hover{
+    border: 1px ridge black;
+    cursor: pointer;
+}
+.baby_list .baby_desc{
+  position: relative;
+  display: inline;
+  width: 800px;
+  height: 170px;
+  left: 450px;
+}
+.baby_list .baby_name{
+    position: absolute;
+    font-size: 26px;
+    color: blue;
+    width: max-content;
+    left: 5px;
+    top: 12px;
+}
+.baby_list .shop_name{
+  position: absolute;
+  font-size: 10px;
+  width: max-content;
+  left: 40px;
+  top: 70px;
+}
+.baby_list .baby_name a{
+    text-decoration: none;
+}
+.baby_list .baby_name a:hover{
+    text-decoration: underline;
+}
+.ds_name{
+    font-size: 12px;
+    width: 120px;
+    height: 100%;
+}
+.baby_list .baby_price{
+  position: absolute;
+  font-size: 32px;
+  color: red;
+  width: max-content;
+  left: 500px;
+  top: 65px;
+}
+.baby_list .sell_num{
+    position: absolute;
+    font-size: 18px;
+    color: gray;
+    width: max-content;
+    left: 20px;
+    top: 130px;
+}
+/*返回顶部按钮*/
+.arrow{
+    border: 14px solid transparent;
+    border-bottom-color: #3DA0DB;
+    width: 3px;
+    height: 0px;
+    top: -4px;
+    z-index: 3;
+}
+.stick{
+    width: 10px;
+    height: 32px;
+    border-radius: 4px;
+    background-color: #3DA0DB;
+    top: 16px;
+    z-index: 3;
+}
+#gotop div{
+    position: absolute;
+    margin: auto;
+    right: 0px;
+    left: 0px;
+    z-index: 3;
+}
+#gotop{
+    background-color: #dddddd;
+    height: 60px;
+    width: 50px;
+    border-radius: 8px;
+    display: block;
+    cursor: pointer;
+    position: fixed;
+    right: 40px;
+    bottom: 80px;
+    display: none;
+    z-index: 3;
+}
+/*分页按钮样式*/
+
+.page_ctrl{
+  text-align: center;
+  margin: 10px auto;
+  box-sizing: border-box;
+  width: 100%;
+  height: 36px;
+  }
+
+  .page_ctrl *{
+    line-height: 26px;
+  }
+
+  .page_ctrl button{
+    margin:0 3px;
+    min-width: 60px;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    border-radius: 8px;
+    color: #5e5e5e;
+    cursor: pointer;
+    outline: none;
+    text-align: center;
+  }
+  .page_ctrl .page_dot{
+    font-size: 20px;
+    width: 27px;
+  }
+
+  .page_ctrl button:hover{
+    background: #0eb0d2;
+    color: #ffffff;
+  }
+
+  .page_ctrl .btn_dis{
+    cursor: default;
+    opacity: .7;
+    background: #eeeeee;
+    color: #5e5e5e;
+  }
+
+  .page_ctrl .btn_dis:hover{
+    background: #eeeeee;
+    color: #5e5e5e;
+  }
+
+  .page_num current_page{
+    background: #0eb0d2;
+    color: #ffffff;
+  }
+
+  .page_ctrl .input_page_num{
+    width:30px;
+    height: 26px;
+    margin:0 3px;
+    padding: 0;
+    text-align: center;
+    background: #ffffff;
+    border: 1px solid #e5e5e5;
+    color: #5e5e5e;
+    outline: none;
+  }
+  .page_ctrl .page_total,.page_ctrl .page_text{
+    color: #2b2b2b;
+    font-size: 13px;
+  }
+  /*图片映射样式*/
+  .img_map{
+    position: relative;
+    width: 100%;
+    height: 300px;
+}
+.person{
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    display: none;
+}
+.person img{
+    width: 100px;
+    height: 100px;
+}
+#person1{
+    left: 23%;
+    top: 5%;
+}
+#person2{
+    left: 34%;
+    top: -21%;
+}
+#person3{
+    left: 45%;
+    top: 0%;
+}
+#person4{
+    left: 56%;
+    top: 0%;
+}
+#person5{
+    left: 71%;
+    top: 5%;
+}
+#box{
+  position: absolute;
+  left: 3%;
+  top: 12%;
+  width: 200px;
+  height: 200px;
+  font-size: 12px;
+  color: #2b2b2b;
+  background-color:lightgrey;
+  display: none;
+}
+#box .person_name{
+  text-align: center;
+  color: #0eb0d2;
+  font-size: 24px;
+  width: 200px;
+}
+#box .person_desc{
+  color: black;
+  font-size: 24px;
+}
+
+    </style>
+</head>
+<body>
+    <!--搜索框及复选框部分（和index同）-->
+    <div style="width:100%; height: 125px;text-align: center;background-color: rgb(250,250,250);" >
+        <form method="post">
+            {{ search_bar.csrf_toke }}<!--渲染CSRF令牌隐藏字段-->
+            {{ search_bar.hidden_tag() }}
+            <!--搜索框-->
+            <div id="search_result_head" style="position: relative">
+            	<img src="{{ url_for('static', filename='bijia_logo.png') }}" style="position: absolute;width: 164px;left: 140px;top: 12px;height: 70px;">
+                {{ search_bar.baby }}
+                {{ search_bar.submit(value="搜索") }}
+            </div>
+            <!--复选框部分-->
+            <div id="search_result_checkbox">
+                {{ search_bar.all }}
+                <label for="all">
+                    <span onclick="function1()">
+                        全网
+                    </span>
+                </label>
+                {{ search_bar.taobao }}
+                <label for="taobao">
+                    <span onclick="function1()">
+                        淘宝
+                    </span>
+                </label>
+                {{ search_bar.jingdong }}
+                <label for="jingdong">
+                    <span onclick="function1()">
+                        京东
+                    </span>
+                </label>
+                {{ search_bar.suning }}
+                <label for="suning">
+                    <span onclick="function1()">
+                        苏宁
+                    </span>
+                </label>
+                {{ search_bar.dangdang }}
+                <label for="dangdang">
+                    <span onclick="function1()">
+                        当当
+                    </span>
+                </label>
+            </div>
+        </form>
+    </div>
+    <!--筛选部分-->
+    <div style="height: 60px;width: 100%; background-color:white; position: sticky; top: 0; line-height: 60px; text-align: center; z-index: 2;">
+        <form method="post">
+            <input type="radio" id="normal" name="order" checked value=1>
+            <label for="normal">
+                <span class="dischecked">默认排序</span>
+            </label>
+            <input type="radio" id="low" name="order" value=2>
+            <label for="low">
+                <span class="dischecked">价格升序</span>
+            </label>
+            <input type="radio" id="high" name="order" value=3>
+            <label for="high">
+                <span class="dischecked">价格降序</span>
+            </label>
+            <input type="radio" id="quentity" name="order" value=4>
+            <label for="quentity">
+                <span class="dischecked">销量排序</span>
+            </label>
+            {{ price_set.csrf_toke }}<!--渲染CSRF令牌隐藏字段-->
+            {{ price_set.hidden_tag() }}
+            价格区间：
+            {{ price_set.min_price(class="section", placeholder="--￥") }}
+            ~
+            {{ price_set.max_price(class="section", placeholder="--￥") }}
+            {{ price_set.price_submit(class="dischecked", value="筛选") }}
+        </form>
+    </div>
+    <div id="no_baby" style="width: 100%;
+    height: 480px;
+    background-color: lightgray;
+    text-align: center;
+    position: relative;
+">
+        <span style="    width: 100%;
+    font-size: 50px;
+    color: #2b2b2b;
+    position: absolute;
+    top: 35%;
+    left: 3%;">
+            抱歉，没有您要找的宝贝呢~
+        </span>
+    </div>
+    <!--搜索结果展示-->
+<div class="page">
+    <div class="page_content">
+        {% for baby in baby_list %}
+            <div style="height: 180px; " class="baby_list">
+                <div class="baby_img">
+                    <a href="{{ baby.url }}">
+                    <img style="width: 170px; height: 165px;"
+                         src="{{ baby.img_adress }}" alt="name" />
+                    </a>
+            </div>
+            <div class="baby_desc">
+                <span class="baby_name"><a href="{{ baby.url }}">{{ baby.name }}</a></span>
+                <span style="font-size: 18px" class="shop_name">{{baby.shop_name}}{{baby.if_offcial}} <span style="font-size: 18px" class="ds_name">{{ baby.ds_name }}</span></span>
+                <span class="baby_price">￥{{ baby.price }}</span>
+                <span class="sell_num">已售 {{ baby.sell_num }} 件</span>
+            </div>
+        </div>
+        {% endfor %}
+     </div>
+    <div class="page_ctrl"></div>
+</div>
+    <!--返回顶部按钮-->
+    <div id="gotop">
+        <div class="arrow"></div>
+        <div class="stick"></div>
+    </div>
+    <div class="img_map">
+            <img src="{{ url_for('static', filename='team.jpg') }}" style="width: 100%;height: 300px" usemap="#umap">
+        <map id = "umap" name = "umap">
+              <area shape = "circle" coords = "400,160,60"   alt = ""  />
+              <area shape = "circle" coords = "550,80,60"     alt = ""  />
+              <area shape = "circle" coords = "725,140,60"   alt = ""  />
+              <area shape = "circle" coords = "900,140,60"   alt = ""  />
+              <area shape = "circle" coords = "1130,150,60"  alt = ""  />
+            </map>
+                <div id="person1" class="person" >
+                <img src="{{ url_for('static', filename='zy.png') }}" alt="">
+                </div>
+                <div id="person2" class="person" >
+                <img src="{{ url_for('static', filename='wkh.png') }}" alt="">
+                </div>
+                <div id="person3" class="person" >
+                <img src="{{ url_for('static', filename='zl.jpg') }}" alt="">
+                </div>
+                <div id="person4" class="person" >
+                <img src="{{ url_for('static', filename='yzb.jpg') }}" alt="">
+                </div>
+                <div id="person5" class="person" >
+                <img src="{{ url_for('static', filename='zj.jpg') }}" alt="">
+                </div>
+    </div>
+                    <input style="display: none" id="search_result_param" value={{search_result}}></div>
+                    <input style="display: none" id="search_baby_param" value={{search_baby}}></div>
+                    <input style="display: none" id="search_shop_param" value={{search_shop}}></div>
+                    <input style="display: none" id="sort_rule_param" value={{sort_rule}}></div>
+                    <input style="display: none" id="all_pages_param" value={{all_pages}}></div>
+                    <input style="display: none" id="current_page_param" value={{current_page}}></div>
+                    <input style="display: none" id="result_url_param" value={{result_url}}></div>
+                </div>
+                </body>
+                <script src="http://cdn.staticfile.org/jquery/1.11.1-rc2/jquery.min.js"></script>
+                <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+
+                <script>
+                //localStorage.setItem("lastname", "Smith");
+                //localStorage.getItem("lastname");
+                //var search_baby = localStorage.baby;//本地localStorage
+                var search_baby = $('#search_baby_param').val();
+                $("#baby").placeholder = search_baby;
+                var search_shop = ($('#search_shop_param').val() !==undefined)?$('#search_shop_param').val():{};
+                var current_page = ($('#current_page_param').val() !==undefined)?$('#current_page_param').val():1;
+                var all_pages = ($('#all_pages_param').val()!==undefined)?$('#all_pages_param').val():20;
+                var result_url = ($('#result_url_param').val() !==undefined)?$('#search_shop_param').val():'';
+                if(!result_url){
+                    alert("hashdahds")
+                }
+
+
+                    var obj={
+                      obj_box:'.page',//翻页容器
+                      per_num:10,//每页条目数
+                      current_page:current_page,//当前页
+                      total_page: all_pages,
+                    };
+                    /*调用分页方法,初始化数据*/
+                    page_ctrl(obj);
+
+/*筛选框*/
+function function1(){
+  var a =document.getElementById("taobao");
+  var b =document.getElementById("jingdong");
+  var c =document.getElementById("suning");
+  var d =document.getElementById("dangdang");
+  var e =document.getElementById("all");
+  if(a.checked===false||b.checked===false||c.checked===false||d.checked===false){
+    e.checked=false;
+  }
+}
+function function2(){
+  var a =document.getElementById("taobao");
+var b =document.getElementById("jingdong");
+var c =document.getElementById("suning");
+var d =document.getElementById("dangdang");
+var e =document.getElementById("all");
+  if(e.checked===false){
+    a.checked=false;
+    b.checked=false;
+    c.checked=false;
+    d.checked=false;
+  }
+}
+
+
+
+
+/* var search_shop = 1;//筛选电商范围
+var sort_rule = 1;//排序方式
+var min_price = $('#min_price').val();
+var max_price = $('#max_price').val(); */
+//current_page 全局变量
+
+/*
+排序框超链接
+var sort_button = $('._dischecked');
+for (let i = 0; i <sort_button.length ; i++) {
+        var element = sort_button[i];
+        $(element).click(function(){
+            sort_rule = i+1;
+            //alert(sort_rule);
+            window.open("",'_self');
+    });
+}
+*/
+$('#sort_normal').click(function(){
+  sort_rule = 1;
+  alert(sort_rule);
+  window.open(result_url.change_sort_rule('1'),'_self');
+})
+$('#sort_high').click(function(){
+  sort_rule = 2;
+  alert(sort_rule);
+  window.open(result_url.change_sort_rule('2'),'_self');
+})
+$('#sort_low').click(function(){
+  sort_rule = 3;
+  alert(sort_rule);
+  window.open(result_url.change_sort_rule('3'),'_self');
+})
+$('#sort_num').click(function(){
+  sort_rule = 4;
+  alert(sort_rule);
+  window.open(result_url.change_sort_rule('4'),'_self');
+})
+
+
+
+
+
+//按钮返回顶部
+$(function(){
+    $(window).scroll(function(){  //只要窗口滚动,就触发下面代码
+
+        var scrollt = document.documentElement.scrollTop || document.body.scrollTop; //获取滚动后的高度
+
+        if( scrollt >200 ){  //判断滚动后高度超过200px,就显示
+
+            $("#gotop").fadeIn(400); //淡入
+
+        }else{
+
+            $("#gotop").stop().fadeOut(400); //如果返回或者没有超过,就淡出.必须加上stop()停止之前动画,否则会出现闪动
+
+        }
+
+    });
+    $("#gotop").click(function(){ //当点击标签的时候,使用animate在200毫秒的时间内,滚到顶部
+
+        $("html,body").animate({scrollTop:"0px"},200);
+    });
+
+});
+
+//构造动态分页按钮
+function page_ctrl(data_obj) {
+
+    //兼容 参数：翻页容器 不存在
+    //！==类型和值不都相同返回真
+      var obj_box=(data_obj.obj_box!== undefined)?data_obj.obj_box:function () {
+        return;
+      };//翻页容器dom对象,必要参数
+
+      var total_item=(data_obj.total_item!== undefined)?parseInt(data_obj.total_item):0;//数据条目总数,默认为0,组件将不加载
+
+      var per_num=(data_obj.per_num!== undefined)?parseInt(data_obj.per_num):10;//每页显示条数,默认为10条
+
+      current_page=(data_obj.current_page!== undefined)?parseInt(data_obj.current_page):1;//当前页,默认为1
+
+      var total_page=data_obj.total_page;//计算总页数,不足2页,不加载组件
+
+      if(total_page<2){
+        return;
+      }
+
+      function page_even() {
+
+        //加载数据
+        function change_content() {
+
+          //
+
+          var page_content='';//当前页内容
+
+          for(var i=0;i<per_num;i++){
+            page_content+='';
+          }
+
+          page_content+='';
+          //设置添加html
+          $('.page_content').html(page_content);
+        }
+    //创建显示内容
+        //change_content();
+
+        var inp_val=(current_page===total_page)?1:current_page+1;//跳转页数,input默认显示值（当前页）
+        var append_html='<button class="prev_page">上一页</button>';
+   for(var i = 1;i<=total_page;i++){
+       if(current_page<=6){
+           if(i === current_page){
+            append_html+='<button class="page_num current_page">'+(i)+'</button>';
+           }
+           else if(i<=7){
+            append_html+='<button class="page_num">'+(i)+'</button>';
+           }
+           else if(i === 8){
+            append_html+='<span class="page_dot"> ••• </span>';
+           }
+           else if(i >= total_page-1){
+            append_html+='<button class="page_num">'+(i)+'</button>';
+           }
+       }
+       else if(current_page>=total_page-5){
+        if(i === current_page){
+         append_html+='<button class="page_num current_page">'+(i)+'</button>';
+        }
+        else if(i>=total_page-6){
+         append_html+='<button class="page_num">'+(i)+'</button>';
+        }
+        else if(i === 3){
+         append_html+='<span class="page_dot"> ••• </span>';
+        }
+        else if(i <= 2){
+         append_html+='<button class="page_num">'+(i)+'</button>';
+        }
+    }
+    else{
+        if(i === current_page){
+            append_html+='<button class="page_num current_page">'+(i)+'</button>';
+           }
+        else if(i<=2 || i>=total_page-1 ||(i>=current_page-1&&i<=current_page+2)){
+            append_html+='<button class="page_num">'+(i)+'</button>';
+        }
+        else if(i===3 || i===total_page-2){
+            append_html+='<span class="page_dot"> ••• </span>';
+        }
+    }
+   }
+    //完成分页按钮动态样式
+        append_html+='<button class="next_page">下一页</button><span class="page_total">共 '+total_page+' 页, 到第</span><input class="input_page_num" type="text" value="'+inp_val+'"><span class="page_text">页</span><button class="to_page_num">确定</button>';
+
+        $(obj_box).children('.page_ctrl').append(append_html);
+
+        if(current_page===1){
+          //当前页为1时，前一页不可用
+          $(obj_box+' .page_ctrl .prev_page').attr('disabled','disabled').addClass('btn_dis');
+        }else{
+          $(obj_box+' .page_ctrl .prev_page').removeAttr('disabled').removeClass('btn_dis');
+        }
+
+        if(current_page===total_page){
+          $(obj_box+' .page_ctrl .next_page').attr('disabled','disabled').addClass('btn_dis');
+        }else{
+          $(obj_box+' .page_ctrl .next_page').removeAttr('disabled').removeClass('btn_dis');
+        }
+      }
+
+      page_even();
+      $(obj_box+' .page_ctrl').on('click','button',function () {
+        //取到点击对象
+        var that=$(this);
+        if(that.hasClass('prev_page')){
+          if(current_page!==1){
+            current_page--;
+            //刷新按钮样式
+            //alert(current_page);
+            window.open(result_url.change_page(toString(current_page)),'_self');
+            //alert("www..com/search_result" + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+            that.parent('.page_ctrl').html('');
+            page_even();
+          }
+        }
+
+        else if(that.hasClass('next_page')){
+          if(current_page!==total_page){
+            current_page++;
+            //alert(current_page);
+            //alert('www..com/ + search_result' + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+            //window.open("www..com/search_result" + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+            window.open(result_url.change_page(toString(current_page)),'_self');
+            that.parent('.page_ctrl').html('');
+            page_even();
+          }
+        }
+    //点击页面数字跳转
+        else if(that.hasClass('page_num')&&!that.hasClass('current_page')){
+          current_page=parseInt(that.html());
+          //alert(current_page);
+          //alert('www..com/ + search_result' + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+          //window.open("www..com/search_result" + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+          window.open(result_url.change_page(toString(current_page)),'_self');
+          that.parent('.page_ctrl').html('');
+          page_even();
+        }
+    //输入框跳转
+        else if(that.hasClass('to_page_num')){
+          var target_num = parseInt(that.siblings('.input_page_num').val());
+          if(target_num<total_page&&target_num>=0){
+            //$(obj_box+' .page_ctrl .to_page_num').removeAttr('disabled').removeClass('btn_dis');
+            current_page = target_num;
+            //alert(current_page);
+            //alert('www..com/ + search_result' + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+            //window.open("www..com/search_result" + '/' + search_baby + '/' + search_shop + '/' + sort_rule + '/'+  current_page + '/' + min_price + '/' + max_price+'');
+            window.open(result_url.change_page(toString(current_page)),'_self');
+            that.parent('.page_ctrl').html('');
+            page_even();
+          }
+          else {
+            //$(obj_box+' .page_ctrl .to_page_num').attr('disabled','disabled').addClass('btn_dis');
+            alert("页数不存在");
+          }
+        }
+      });
+
+    }
+
+   // 'www.342342.com/' + search_result + '/' search_baby + '/' + search_shop + '/ ' + sort_rule +  current_page + '/' + mim_price + '/' + max_price;
+
+/*图片映射显示信息
+var person = $('area');
+var person_len = person.length;
+for (let i = 0; i < person_len; i++){
+    var element = person[i];
+    $(element).mouseenter(function(){
+        $('#person'+(i+1)+'').fadeIn(200);
+    });
+    $(person).mouseleave(function(){
+        $('#person'+(i+1)+'').fadeOut(100);
+    });
+} */
+var persons = $('area');
+var person = persons[0];
+$(person).mouseenter(function(){
+  $('#person1').fadeIn(200);
+});
+$(person).mouseleave(function(){
+  $('#person1').fadeOut(100);
+});
+ person = persons[1];
+$(person).mouseenter(function(){
+  $('#person2').fadeIn(200);
+});
+$(person).mouseleave(function(){
+  $('#person2').fadeOut(100);
+});
+ person = persons[2];
+$(person).mouseenter(function(){
+  $('#person3').fadeIn(200);
+});
+$(person).mouseleave(function(){
+  $('#person3').fadeOut(100);
+});
+ person = persons[3];
+$(person).mouseenter(function(){
+  $('#person4').fadeIn(200);
+});
+$(person).mouseleave(function(){
+  $('#person4').fadeOut(100);
+});
+ person = persons[4];
+$(person).mouseenter(function(){
+  $('#person5').fadeIn(200);
+});
+$(person).mouseleave(function(){
+  $('#person5').fadeOut(100);
+});
+
+</script>
+
+
+
+</html>
