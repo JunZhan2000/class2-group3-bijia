@@ -1,18 +1,8 @@
-babies.xls ÊÇ´ÓÊı¾İ¿âµ¼³öµÄÉÌÆ·±í
-£¨ÊÖ»úÉÌÆ·£¬Ô¼ÓĞÒ»ÍòËÄÇ§Ìõ¼ÇÂ¼£©
+* babies.xls æ˜¯ä»æ•°æ®åº“å¯¼å‡ºçš„å•†å“è¡¨ï¼ˆæ‰‹æœºå•†å“ï¼Œçº¦æœ‰ä¸€ä¸‡å››åƒæ¡è®°å½•ï¼‰
+* search_babyæ˜¯ç”¨äºçˆ¬å–æ•°æ®å¹¶æ›´æ–°æ•°æ®åº“çš„é¡¹ç›®
+* éœ€è¦å®‰è£…çš„åº“æœ‰requests, lxml, bs4, SQLAlchemy, mysql-connector-python
 
+* bijiaæ˜¯ç”¨äºè¿è¡Œç½‘ç«™çš„é¡¹ç›®
+* éœ€è¦å®‰è£…çš„åº“æœ‰Flask, wtforms, Flask-wtf, SQLAlchemy, mysql-connector-python, jieba, genism
 
-
-
-search_babyÊÇÓÃÓÚÅÀÈ¡Êı¾İ²¢¸üĞÂÊı¾İ¿âµÄÏîÄ¿
-ĞèÒª°²×°µÄ¿âÓĞrequests, lxml, bs4, SQLAlchemy, mysql-connector-python
-
-
-
-
-bijiaÊÇÓÃÓÚÔËĞĞÍøÕ¾µÄÏîÄ¿
-ĞèÒª°²×°µÄ¿âÓĞFlask, wtforms, Flask-wtf, SQLAlchemy, mysql-connector-python, jieba, genism
-
-ÔËĞĞ¸ÃÏîÄ¿ĞèÒÀ´ÎÊäÈëÃüÁî£º
-set FLASK_APP=bijia
-flask run
+* è¿è¡Œè¯¥é¡¹ç›®éœ€ä¾æ¬¡è¾“å…¥å‘½ä»¤ï¼šset FLASK_APP=bijiaã€flask run
